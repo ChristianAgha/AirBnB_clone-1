@@ -48,4 +48,4 @@ def deploy():
      deploy func definition
     """
     archive_path = do_pack()
-    return  do_deploy(archive_path)
+    return do_deploy(archive_path)
