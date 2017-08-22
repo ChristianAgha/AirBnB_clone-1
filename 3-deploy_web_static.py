@@ -14,7 +14,7 @@ def do_pack():
     try:
         local("mkdir -p versions")
         local("tar -cvzf versions/web_static_{}.tgz web_static".format(now))
-        return("versions/web_static_{}.tgz web_static".format(now))
+        return("versions/web_static_{}.tgz".format(now))
     except:
         return None
 
@@ -48,4 +48,5 @@ def deploy():
      deploy func definition
     """
     archive_path = do_pack()
-    return do_deploy(archive_path)
+    res = do_deploy(archive_path)
+    return res
