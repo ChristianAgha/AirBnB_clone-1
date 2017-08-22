@@ -16,7 +16,7 @@ def do_pack():
         local("tar -cvzf versions/web_static_{}.tgz web_static".format(now))
         return("versions/web_static_{}.tgz web_static".format(now))
     except:
-        return(None)
+        return None
 
 
 def do_deploy(archive_path):
@@ -45,11 +45,7 @@ def do_deploy(archive_path):
 
 def deploy():
     """
-     deploys func definition
+     deploy func definition
     """
-    try:
-        arch_address = do_pack()
-        status = do_deploy(arch_address)
-        return status
-    except:
-        return False
+    archive_path = do_pack()
+    return  do_deploy(archive_path)
