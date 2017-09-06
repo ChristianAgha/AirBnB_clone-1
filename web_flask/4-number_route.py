@@ -42,7 +42,7 @@ def display_py(text='is cool'):
     py_text = "Python " + text.replace('_', ' ')
     return(py_text)
 
-@app.route('/number', strict_slashes=False)
+
 @app.route('/number/<n>', strict_slashes=False)
 def display_n(n):
     """
