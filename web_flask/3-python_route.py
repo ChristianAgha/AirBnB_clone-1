@@ -32,6 +32,7 @@ def display_C(text):
     text = "C " + text.replace('_', ' ')
     return(text)
 
+
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def display_py(text='is cool'):
