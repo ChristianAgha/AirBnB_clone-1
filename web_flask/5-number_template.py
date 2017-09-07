@@ -3,7 +3,7 @@
 Starts a Flask web application
 """
 from flask import Flask, abort, render_template
-app = Flask('__name__')
+app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
@@ -52,14 +52,13 @@ def display_n(n):
         abort(404)
 
 
-@app.route('/number_template/<n>', strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def display_template(n):
     """
     display an HTML page only if n is an int
     """
     try:
-        num = int(n)
-        return render_template('5-number.html', n=num)
+        return render_template('5-number.html', n=n)
     except:
         abort(404)
 
