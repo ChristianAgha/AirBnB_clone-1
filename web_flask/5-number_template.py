@@ -2,8 +2,6 @@
 """
 Starts a Flask web application
 """
-
-
 from flask import Flask, abort, render_template
 app = Flask('__name__')
 
@@ -60,8 +58,8 @@ def display_template(n):
     display an HTML page only if n is an int
     """
     try:
-        number = int(n)
-        return render_template('5-number.html', number=number)
+        num = int(n)
+        return render_template('5-number.html', n=num)
     except:
         abort(404)
 
