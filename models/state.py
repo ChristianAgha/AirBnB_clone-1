@@ -15,10 +15,12 @@ class State(BaseModel, Base):
     if getenv("HBNB_TYPE_STORAGE") == 'db':
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
-        cities = relationship('City', backref='state', cascade="all")
+        cities = relationship('City', backref='state',
+                              cascade='all, delete-orphan')
     else:
         name = ''
 
+    if getenv("HBNB_TYPE_STORAGE") != 'db':
         @property
         def cities(self):
             """Returns a list of City objects"""
