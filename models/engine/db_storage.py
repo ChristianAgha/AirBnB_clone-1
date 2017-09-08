@@ -3,7 +3,7 @@
 Database Storage Engine DBStorage
 """
 from sqlalchemy import create_engine, func, MetaData
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
 from models.base_model import Base
 from models.state import State
@@ -85,4 +85,8 @@ class DBStorage:
         """
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine)
-        self.__session = Session()
+        self.__session = scoped_session(Session)
+
+    def close(self):
+        """calls remove() method"""
+        self.__session.remove()

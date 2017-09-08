@@ -7,6 +7,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import *
 from models.base_model import BaseModel, Base
 from os import getenv
+import models
 
 
 class State(BaseModel, Base):
@@ -17,6 +18,16 @@ class State(BaseModel, Base):
         cities = relationship('City', backref='state', cascade="all")
     else:
         name = ''
+
+        @property
+        def cities(self):
+            """Returns a list of City objects"""
+            cities = []
+            city_objs = models.storage.all('City').values()
+            for city in city_objs:
+                if city.state_id == self.id:
+                    cities.append(city)
+            return cities
 
     def __init__(self, *args, **kwargs):
         """instantiates a new state"""
