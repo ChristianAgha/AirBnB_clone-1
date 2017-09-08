@@ -10,9 +10,9 @@ from os import getenv
 
 if getenv("HBNB_TYPE_STORAGE") == "db":
     storage = db_storage.DBStorage()
+    CNC = db_storage.DBStorage.CNC
 else:
     storage = file_storage.FileStorage()
+    CNC = file_storage.FileStorage.CNC
 
 storage.reload()
-"""CNC - dictionary = { Class Name (string) : Class Type }"""
-CNC = file_storage.FileStorage.CNC

@@ -35,6 +35,12 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
+        if cls:
+            objs = {}
+            for cls_id, obj in FileStorage.__objects.items():
+                if type(obj).__name__ == cls:
+                    objs[cls_id] = obj
+            return objs
         """returns private attribute: __objects"""
         return FileStorage.__objects
 
